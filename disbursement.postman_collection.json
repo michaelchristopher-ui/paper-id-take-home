@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "c3814896-d4ef-484b-ab2d-ac78e1271de9",
+		"name": "disbursement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26579092"
+	},
+	"item": [
+		{
+			"name": "Disbursement Endpoint",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_id_from\": 1,\r\n    \"account_id_to\": 2,\r\n    \"amount\": 100.00,\r\n    \"description\": \"TEST DISBURSEMENT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8008/disbursement/disburse?",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"disbursement",
+						"disburse"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Disburse Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account_id_from\": 1,\r\n    \"account_id_to\": 2,\r\n    \"amount\": 100.00,\r\n    \"description\": \"TEST DISBURSEMENT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8008/disbursement/disburse?",
+							"host": [
+								"localhost"
+							],
+							"port": "8008",
+							"path": [
+								"disbursement",
+								"disburse"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 02 Dec 2024 21:50:35 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3"
+						}
+					],
+					"cookie": [],
+					"body": "{}"
+				}
+			]
+		}
+	]
+}

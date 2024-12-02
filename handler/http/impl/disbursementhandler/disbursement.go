@@ -35,7 +35,12 @@ func (h *DisbursementAPIPIntegrator) Disbursement(c echo.Context) error {
 		})
 	}
 
-	err := h.DisbursementService.Disburse(c.Request().Context(), disbursementsvc.DisburseReq{})
+	err := h.DisbursementService.Disburse(c.Request().Context(), disbursementsvc.DisburseReq{
+		AccountIdFrom: u.AccountIdFrom,
+		AccountIdTo:   u.AccountIdTo,
+		Amount:        u.Amount,
+		Description:   u.Description,
+	})
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, models.ErrorJson{
 			Error: constants.ErrorInternalServer,

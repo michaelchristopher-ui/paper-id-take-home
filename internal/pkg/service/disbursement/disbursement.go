@@ -47,7 +47,7 @@ func (d *Disbursement) Disburse(ctx context.Context, req disbursementsvc.Disburs
 	//Actual transfer
 	d.accountRepo.UpdateBalance(ctx, tx, accountrepo.UpdateBalance{
 		ID:          req.AccountIdFrom,
-		BalanceIncr: -req.Amount,
+		BalanceIncr: req.Amount * -1,
 	})
 	d.accountRepo.UpdateBalance(ctx, tx, accountrepo.UpdateBalance{
 		ID:          req.AccountIdTo,

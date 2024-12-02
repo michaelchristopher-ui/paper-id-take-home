@@ -47,18 +47,28 @@ func (a *AccountRepo) UpdateBalance(ctx context.Context, db *gorm.DB, req accoun
 	if db == nil {
 		db = a.db
 	}
-	account := &model.Account{
-		ID: req.ID,
+
+	account := &model.Account{}
+
+	// Check if the account exists
+	if err := db.WithContext(ctx).Where(&model.Account{ID: req.ID}).Find(account).Error; err != nil {
+		return err
 	}
-	db.First(account)
+
+	// Update the balance
+	if account.Balance+req.BalanceIncr < 0 {
+		return errors.New("insufficient balance")
+	}
+
 	account.UpdatedAt = time.Now()
-	account.Balance = account.Balance - req.BalanceIncr
+	account.Balance += req.BalanceIncr
+
 	res := db.Save(account)
 	if res.Error != nil {
 		return res.Error
 	}
 	if res.RowsAffected == 0 {
-		return errors.New("no rows affected")
+		return errors.New("no rows affected") // Consider a more specific error
 	}
 	return nil
 }
